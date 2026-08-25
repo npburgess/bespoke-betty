@@ -1,0 +1,79 @@
+---
+import SiteNav from "../components/site-nav.astro";
+import SiteFooter from "../components/site-footer.astro";
+import "@fontsource/archivo/500.css";
+import "@fontsource/archivo/600.css";
+import "@fontsource/archivo/700.css";
+import "@fontsource/inter/300.css";
+import "@fontsource/inter/400.css";
+import "@fontsource/inter/500.css";
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description?: string;
+  /** Social share image, relative to site root. Replace the default per client. */
+  ogImage?: string;
+  /** Alt text for the share image (og:image:alt / twitter:image:alt). */
+  ogImageAlt?: string;
+  /** Site name used in og:site_name — set once per client. */
+  siteName?: string;
+}
+
+const {
+  title,
+  description = "",
+  ogImage = "/images/og-card.png",
+  ogImageAlt = "",
+  siteName = "Bespoke Betty",
+} = Astro.props;
+
+// Canonical + absolute URLs derive from `site` in astro.config.mjs.
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const ogImageUrl = new URL(ogImage, Astro.site).href;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="canonical" href={canonical} />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+
+    <!-- Open Graph (Facebook, WhatsApp, iMessage, LinkedIn) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:alt" content={ogImageAlt} />
+    <meta property="og:locale" content="en_AU" />
+
+    <!-- Twitter/X card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+    <meta name="twitter:image:alt" content={ogImageAlt} />
+
+    <!--
+      Per-page structured data / extra head tags go through this slot, e.g.:
+        <script type="application/ld+json" slot="head" set:html={JSON.stringify(schema)} />
+      For a local business use a LocalBusiness / SportsActivityLocation schema with
+      name, address, telephone, and openingHoursSpecification — it feeds Google's
+      local/map results with no analytics account required.
+    -->
+    <slot name="head" />
+  </head>
+  <body>
+    <SiteNav />
+    <main>
+      <slot />
+    </main>
+    <SiteFooter />
+  </body>
+</html>

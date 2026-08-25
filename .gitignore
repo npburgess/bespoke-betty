@@ -1,0 +1,23 @@
+# Build output
+dist/
+.astro/
+
+# Dependencies
+node_modules/
+
+# Env & logs
+.env
+.env.*
+npm-debug.log*
+
+# OS
+.DS_Store
+
+# Working artifacts (see ~/dev/CLAUDE.md)
+project/PLAN.md
+project/mockups/
+project/reports/
+project/data/
+
+# Per-user Claude config
+.claude/settings.local.json

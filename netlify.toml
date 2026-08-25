@@ -1,0 +1,10 @@
+# Netlify build settings. Connect this repo in Netlify; build config is picked up automatically.
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Contact form is Netlify Forms (data-netlify="true" in src/pages/index.astro).
+# After first deploy: Netlify → Forms → "contact" → add an email notification to Betty.

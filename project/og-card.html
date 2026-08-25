@@ -1,0 +1,68 @@
+<!--
+  OG share-card generator (1200×630). Per-client starting point.
+
+  Rasterize to PNG with headless Chrome, then drop into the site:
+    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
+      --headless=new --disable-gpu --hide-scrollbars --force-device-scale-factor=1 \
+      --screenshot=og-card.png --window-size=1200,630 \
+      file://$PWD/og-card.html
+    cp og-card.png ../public/images/og-card.png
+
+  Content rules (learned the hard way — see freelance/CLAUDE.md Build conventions):
+    - Use the REAL brand logo/crest, not a placeholder mark.
+    - Heading ≈ 3 words so it survives a phone-sized thumbnail; drop any subheading.
+    - Restrain the accent — one CTA, not a wash of colour. A white pill on a dark card reads
+      as the distinct call-to-action while the accent stays on the crest/keywords.
+    - CTA = imperative verb + button affordance (arrow). "Play at example.com →", not a bare domain.
+-->
+<!doctype html>
+<meta charset="utf-8" />
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  html, body { height: 630px; width: 1200px; }
+  body {
+    align-items: center;
+    background: radial-gradient(120% 120% at 78% 20%, #1f2b22 0%, #0f1410 60%);
+    color: #f4f7f0;
+    display: flex;
+    font-family: "Inter", system-ui, -apple-system, sans-serif;
+    gap: 72px;
+    padding: 72px 96px;
+  }
+  .logo { flex: 0 0 340px; height: 340px; }
+  .logo svg, .logo img { display: block; height: 340px; width: 340px; }
+  .copy { flex: 1; }
+  .eyebrow {
+    color: #f5a623; /* accent */
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  h1 {
+    font-size: 128px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 0.92;
+    margin: 26px 0 40px;
+  }
+  h1 span { color: #f5a623; } /* accent on the payoff word only */
+  .cta {
+    align-items: center;
+    background: #f4f7f0; /* white pill = the one clear call-to-action */
+    border-radius: 999px;
+    color: #0f1410;
+    display: inline-flex;
+    font-size: 34px;
+    font-weight: 700;
+    padding: 18px 40px;
+  }
+</style>
+<div class="logo">
+  <!-- Paste the client's real logo SVG here (or <img src="..."> a PNG). -->
+</div>
+<div class="copy">
+  <div class="eyebrow">City, Region</div>
+  <h1>Three-word<br /><span>hook.</span></h1>
+  <span class="cta">Do X at example.com&nbsp;&rarr;</span>
+</div>

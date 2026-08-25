@@ -1,0 +1,75 @@
+/* Design tokens — Bespoke Betty ("Studio" direction: monochrome, precise, ink-only). */
+:root {
+  --color-accent: #171715; /* ink-only — no chroma; buttons/links use text colour */
+  --color-accent-ink: #000000;
+  --color-bg: #fafaf8;
+  --color-line: #e4e3de; /* hairline grid */
+  --color-muted: #78766f;
+  --color-surface: #ffffff;
+  --color-text: #171715;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-heading: "Archivo", system-ui, sans-serif;
+  --radius: 0;
+  --space: 1rem;
+  --width-max: 66rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading);
+  line-height: 1.05;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: var(--width-max);
+  padding: 0 clamp(1.25rem, 4vw, 2.5rem);
+  width: 100%;
+}
+
+/* Uppercase letterspaced utility label used throughout the Studio look. */
+.micro {
+  color: var(--color-muted);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.button {
+  background: var(--color-text);
+  border: 0;
+  border-radius: var(--radius);
+  color: var(--color-bg);
+  cursor: pointer;
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 0.8rem 1.8rem;
+  text-transform: uppercase;
+}
+
+.button:hover {
+  opacity: 0.85;
+}

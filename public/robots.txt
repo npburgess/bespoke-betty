@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bespokebetty.com.au/sitemap.xml

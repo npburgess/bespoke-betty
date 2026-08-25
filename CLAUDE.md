@@ -1,0 +1,42 @@
+# CLAUDE.md — Bespoke Betty
+
+Showcase site for Bespoke Betty (handmade, made-to-order shirts, hoodies, jumpers, cushions).
+Inherits the freelance grouping conventions (`../CLAUDE.md`); this file is authoritative for
+project-specifics.
+
+## Ownership (deliberate deviation)
+
+The freelance handoff rule says the **client** owns GitHub + Netlify from day one. This project
+**intentionally departs**: it's the owner's sister's site, maintained indefinitely by us.
+
+- **GitHub**: private repo under **npburgess** (owner's personal account), remote via the
+  `github-npburgess` SSH alias — `git@github-npburgess:npburgess/bespoke-betty.git`.
+- **Netlify**: owner's account.
+- Trade-off accepted: taking it fully independent later means an account transfer.
+
+## Stack & shape
+
+- Astro static, single scrolling page (`src/pages/index.astro`): hero · work · about · contact.
+  `/success` is the contact form's thank-you page (noindex).
+- Design: "Studio" direction — monochrome/ink-only, Archivo × Inter, hairline grid, `--radius: 0`.
+  Rebrand via tokens in `src/styles/global.css`. Selected from `project/mockups/homepage-direction/`.
+- No Decap CMS (Betty won't self-edit; content changes go through us).
+- Fonts self-hosted via `@fontsource/archivo` + `@fontsource/inter`.
+
+## Domain & email
+
+- `bespokebetty.com.au`, currently at **Netregistry**. Point DNS at Netlify (DNS-only if it ends
+  up on Cloudflare). Add email anti-spoofing DNS — **read existing records first**.
+- Domain email: **undecided**. Built web-only. If Betty wants an address later, that's the
+  trigger to move DNS to Cloudflare (free Email Routing).
+
+## Deploy
+
+- `npm run build` (build-verify before every push — Netlify bills per production deploy).
+- Batch changes into one push; use `[skip ci]` for working-artifact-only commits.
+- Contact form = Netlify Forms; after first deploy add an email notification in the Netlify UI.
+
+## Content still to swap
+
+Placeholder grey PNGs in `public/images/` stand in for real photos; hero/about/contact copy is
+in `index.astro`. OG card source is `project/og-card.html` (rasterize to `public/images/og-card.png`).
