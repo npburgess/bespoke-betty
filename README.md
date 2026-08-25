@@ -26,8 +26,11 @@ src/
   pages/
     index.astro              # the whole page (hero · work · about · contact)
     success.astro            # contact-form thank-you (noindex)
+  content/work/*.md          # gallery pieces (CMS-editable)
+  data/site.json             # homepage copy (CMS-editable)
   styles/global.css          # design tokens — rebrand here
 public/
+  admin/                     # Sveltia CMS (editor at /admin) — see docs/editing.md
   images/work/*.png          # gallery placeholders — swap for Betty's photos
   images/betty.png           # about portrait placeholder
   robots.txt, sitemap.xml
@@ -36,11 +39,18 @@ project/
   mockups/                   # design exploration (gitignored)
 ```
 
-## Content to swap in
+## Editing content
 
-- **Photos** — replace `public/images/work/01–06.png` and `public/images/betty.png` with real
-  images (square, ~1200×1200). Update titles/categories in the `work` array in `index.astro`.
-- **Copy** — hero, about, and contact text live in `src/pages/index.astro`.
+Content is CMS-editable via **Sveltia CMS** at `/admin` (GitHub login) — see
+[docs/editing.md](docs/editing.md). Editable sources:
+
+- **Gallery** — `src/content/work/*.md` (one file per piece; title, category, image, order).
+- **Homepage copy** — `src/data/site.json` (hero, about, contact text).
+
+Developers can edit those files directly; Betty edits them through `/admin`. Still to do by hand:
+
+- **Photos** — replace the placeholders in `public/images/work/` and `public/images/betty.png`
+  with real images (square, ~1200×1200), or upload them through `/admin`.
 - **OG card** — author `project/og-card.html`, rasterize to `public/images/og-card.png` (1200×630).
 
 ## Contact form (Netlify Forms)
@@ -59,4 +69,5 @@ Forms → `contact` → add an email notification to Betty's address.
 
 ## Documentation
 
-- (none yet — add `docs/` here if the project grows reference material.)
+- [docs/editing.md](docs/editing.md) — how to edit the site via `/admin` (for Betty), plus the
+  one-time GitHub OAuth + auth-worker setup for the CMS.

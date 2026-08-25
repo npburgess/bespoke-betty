@@ -8,3 +8,6 @@
 
 # Contact form is Netlify Forms (data-netlify="true" in src/pages/index.astro).
 # After first deploy: Netlify → Forms → "contact" → add an email notification to Betty.
+#
+# CMS: Sveltia at /admin commits to GitHub → this connected build redeploys the site.
+# Login needs the auth worker in public/admin/config.yml (base_url). See docs/editing.md.

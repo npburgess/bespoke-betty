@@ -1,0 +1,25 @@
+{
+  "hero": {
+    "eyebrow": "Made to order · Handmade in Australia",
+    "heading": "Softly made,",
+    "headingAccent": "just for you.",
+    "lead": "Custom shirts, hoodies, jumpers and cushions — sewn one at a time, in the colours and cuts you actually want.",
+    "cta": "Start a piece"
+  },
+  "work": {
+    "eyebrow": "Selected work",
+    "heading": "A few recent makes"
+  },
+  "about": {
+    "eyebrow": "The maker",
+    "heading": "Hello, I'm Betty.",
+    "image": "/images/betty.png",
+    "imageAlt": "Betty in her studio",
+    "body": "I've been sewing for as long as I can remember. Bespoke Betty is where I make custom pieces to order — a jumper in the exact grey you've been hunting for, a cushion cut from your grandmother's fabric, a shirt that finally fits.\n\nEvery piece is made by hand, one at a time. Tell me what you have in mind and we'll work it out together."
+  },
+  "contact": {
+    "eyebrow": "Get in touch",
+    "heading": "Let's make something.",
+    "lead": "Send a few details and I'll get back to you within a couple of days."
+  }
+}

@@ -21,8 +21,13 @@ The freelance handoff rule says the **client** owns GitHub + Netlify from day on
 - Design: "Thread" direction — warm/soft, Fraunces × Inter, clay accent, dashed "stitch line"
   seams, rounded tiles (`--radius: 14px`). Rebrand via tokens in `src/styles/global.css`.
   Selected (option-2) from `project/mockups/homepage-direction/`.
-- No Decap CMS (Betty won't self-edit; content changes go through us).
-- Fonts self-hosted via `@fontsource/archivo` + `@fontsource/inter`.
+- Self-editing via **Sveltia CMS** at `/admin` (GitHub OAuth) — Decap-compatible, maintained,
+  commits direct to GitHub. Chose it over Decap + Netlify Identity/Git-Gateway because Git Gateway
+  is frozen (security-only) even though Identity was un-deprecated (Feb 2026). Content lives in
+  `src/content/work/*.md` (gallery) + `src/data/site.json` (copy); `index.astro` reads both.
+  Login needs a `sveltia-cms-auth` Cloudflare worker (`config.yml` → `base_url`) + Betty as a repo
+  collaborator; see `docs/editing.md`. Edits go live only once continuous deploy is connected.
+- Fonts self-hosted via `@fontsource-variable/fraunces` + `@fontsource/inter`.
 
 ## Domain & email
 

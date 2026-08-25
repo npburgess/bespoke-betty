@@ -1,0 +1,69 @@
+# Sveltia CMS configuration.
+# Login: GitHub OAuth. `base_url` must point at a deployed sveltia-cms-auth worker that
+# holds the OAuth app's client secret (see docs/editing.md → "One-time setup").
+backend:
+  name: github
+  repo: npburgess/bespoke-betty
+  branch: main
+  base_url: https://REPLACE-WITH-AUTH-WORKER.workers.dev
+
+# Uploaded photos are committed here; the stored path is the public URL below.
+media_folder: "public/images/work"
+public_folder: "/images/work"
+
+collections:
+  - name: work
+    label: "Work pieces"
+    label_singular: "Work piece"
+    folder: "src/content/work"
+    create: true
+    sortable_fields: [order]
+    identifier_field: title
+    slug: "{{order}}-{{slug}}"
+    summary: "{{order}} · {{title}} ({{category}})"
+    fields:
+      - { name: order, label: "Sort order (low = first)", widget: number, value_type: int, default: 0 }
+      - { name: title, label: Title, widget: string }
+      - { name: category, label: Category, widget: string }
+      - { name: image, label: Photo, widget: image, media_library: { config: { max_file_size: 5000000 } } }
+      - { name: body, label: "Notes (optional, not shown on the site)", widget: markdown, required: false }
+
+  - name: settings
+    label: "Site text"
+    editor: { preview: false }
+    files:
+      - name: homepage
+        label: "Homepage copy"
+        file: "src/data/site.json"
+        fields:
+          - name: hero
+            label: Hero
+            widget: object
+            fields:
+              - { name: eyebrow, label: Eyebrow, widget: string }
+              - { name: heading, label: "Heading (first part)", widget: string }
+              - { name: headingAccent, label: "Heading (highlighted part)", widget: string }
+              - { name: lead, label: Intro, widget: text }
+              - { name: cta, label: "Button text", widget: string }
+          - name: work
+            label: "Work section heading"
+            widget: object
+            fields:
+              - { name: eyebrow, label: Eyebrow, widget: string }
+              - { name: heading, label: Heading, widget: string }
+          - name: about
+            label: About
+            widget: object
+            fields:
+              - { name: eyebrow, label: Eyebrow, widget: string }
+              - { name: heading, label: Heading, widget: string }
+              - { name: image, label: Photo, widget: image }
+              - { name: imageAlt, label: "Photo description (for accessibility)", widget: string }
+              - { name: body, label: "About text (blank line between paragraphs)", widget: text }
+          - name: contact
+            label: Contact
+            widget: object
+            fields:
+              - { name: eyebrow, label: Eyebrow, widget: string }
+              - { name: heading, label: Heading, widget: string }
+              - { name: lead, label: Intro, widget: text }
