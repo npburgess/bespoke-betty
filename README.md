@@ -4,8 +4,9 @@ Showcase site for **Bespoke Betty** — handmade, made-to-order shirts, hoodies,
 cushions. Single-page Astro site, statically built, hosted on Netlify. Not a shop — a portfolio
 with a contact form.
 
-Design direction: "Studio" — monochrome, precise, ink-only. Archivo (display) × Inter (body),
-hairline modular grid, no accent colour. Rebrand via tokens in `src/styles/global.css`.
+Design direction: "Thread" — warm, soft, tactile. Fraunces (display) × Inter (body), clay accent
+used with restraint, dashed "stitch line" seams and rounded gallery tiles. Rebrand via tokens in
+`src/styles/global.css`.
 
 ## Develop
 

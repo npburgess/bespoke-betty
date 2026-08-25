@@ -18,8 +18,9 @@ The freelance handoff rule says the **client** owns GitHub + Netlify from day on
 
 - Astro static, single scrolling page (`src/pages/index.astro`): hero · work · about · contact.
   `/success` is the contact form's thank-you page (noindex).
-- Design: "Studio" direction — monochrome/ink-only, Archivo × Inter, hairline grid, `--radius: 0`.
-  Rebrand via tokens in `src/styles/global.css`. Selected from `project/mockups/homepage-direction/`.
+- Design: "Thread" direction — warm/soft, Fraunces × Inter, clay accent, dashed "stitch line"
+  seams, rounded tiles (`--radius: 14px`). Rebrand via tokens in `src/styles/global.css`.
+  Selected (option-2) from `project/mockups/homepage-direction/`.
 - No Decap CMS (Betty won't self-edit; content changes go through us).
 - Fonts self-hosted via `@fontsource/archivo` + `@fontsource/inter`.
 

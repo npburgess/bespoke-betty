@@ -15,32 +15,27 @@ const externalAttrs = (href: string) =>
 <header class="site-nav">
   <div class="container site-nav__inner">
     <a class="site-nav__brand" href="/">Bespoke Betty</a>
-    <nav class="micro">
+    <nav>
       {links.map((link) => <a href={link.href} {...externalAttrs(link.href)}>{link.label}</a>)}
     </nav>
   </div>
+  <div class="container"><hr class="stitch" /></div>
 </header>
 
 <style>
-  .site-nav {
-    border-bottom: 1px solid var(--color-text);
-  }
-
   .site-nav__brand {
     color: var(--color-text);
     font-family: var(--font-heading);
-    font-size: 1.25rem;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    text-transform: uppercase;
+    font-size: 1.65rem;
+    font-weight: 500;
   }
 
   .site-nav__inner {
     align-items: center;
     display: flex;
     justify-content: space-between;
-    padding-bottom: 1.3rem;
-    padding-top: 1.3rem;
+    padding-bottom: 1.4rem;
+    padding-top: 1.5rem;
   }
 
   nav a {

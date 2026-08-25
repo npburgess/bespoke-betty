@@ -1,17 +1,17 @@
-/* Design tokens — Bespoke Betty ("Studio" direction: monochrome, precise, ink-only). */
+/* Design tokens — Bespoke Betty ("Thread" direction: warm, soft, tactile; stitched seams). */
 :root {
-  --color-accent: #171715; /* ink-only — no chroma; buttons/links use text colour */
-  --color-accent-ink: #000000;
-  --color-bg: #fafaf8;
-  --color-line: #e4e3de; /* hairline grid */
-  --color-muted: #78766f;
-  --color-surface: #ffffff;
-  --color-text: #171715;
+  --color-accent: #b08968; /* clay — used with restraint */
+  --color-accent-ink: #9c7457;
+  --color-bg: #ede8e0;
+  --color-line: #d8d0c4; /* dashed "stitch line" + hairlines */
+  --color-muted: #8b857b;
+  --color-surface: #f7f4ef;
+  --color-text: #33302b;
   --font-body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --font-heading: "Archivo", system-ui, sans-serif;
-  --radius: 0;
+  --font-heading: "Fraunces Variable", Georgia, serif;
+  --radius: 14px;
   --space: 1rem;
-  --width-max: 66rem;
+  --width-max: 64rem;
 }
 
 * {
@@ -22,7 +22,7 @@ body {
   background: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-body);
-  line-height: 1.6;
+  line-height: 1.65;
   margin: 0;
   -webkit-font-smoothing: antialiased;
 }
@@ -36,6 +36,7 @@ h1,
 h2,
 h3 {
   font-family: var(--font-heading);
+  font-weight: 400;
   line-height: 1.05;
 }
 
@@ -46,30 +47,35 @@ h3 {
   width: 100%;
 }
 
-/* Uppercase letterspaced utility label used throughout the Studio look. */
-.micro {
-  color: var(--color-muted);
-  font-size: 0.68rem;
-  font-weight: 500;
-  letter-spacing: 0.24em;
+/* Clay uppercase eyebrow used throughout the Thread look. */
+.eyebrow {
+  color: var(--color-accent);
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
+}
+
+/* Sewn seam — a dashed divider. */
+.stitch {
+  border: 0;
+  border-top: 2px dashed var(--color-line);
+  margin: 0;
 }
 
 .button {
-  background: var(--color-text);
+  background: var(--color-accent);
   border: 0;
-  border-radius: var(--radius);
-  color: var(--color-bg);
+  border-radius: 999px;
+  color: #fff;
   cursor: pointer;
   display: inline-block;
-  font-family: var(--font-heading);
-  font-size: 0.9rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  padding: 0.8rem 1.8rem;
-  text-transform: uppercase;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 0.85rem 1.9rem;
 }
 
 .button:hover {
-  opacity: 0.85;
+  background: var(--color-accent-ink);
 }
