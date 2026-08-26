@@ -5,7 +5,7 @@ backend:
   name: github
   repo: npburgess/bespoke-betty
   branch: main
-  base_url: https://REPLACE-WITH-AUTH-WORKER.workers.dev
+  base_url: https://sveltia-cms-auth.miriam-116.workers.dev
 
 # Uploaded photos are committed here; the stored path is the public URL below.
 media_folder: "public/images/work"
