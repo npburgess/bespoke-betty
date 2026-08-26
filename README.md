@@ -71,3 +71,5 @@ Forms → `contact` → add an email notification to Betty's address.
 
 - [docs/editing.md](docs/editing.md) — how to edit the site via `/admin` (for Betty), plus the
   one-time GitHub OAuth + auth-worker setup for the CMS.
+- [docs/dns-and-email.md](docs/dns-and-email.md) — DNS at Netregistry, Proton Mail records (do not
+  touch), the missing-SPF fix, and the launch DNS change plan for Netlify.
