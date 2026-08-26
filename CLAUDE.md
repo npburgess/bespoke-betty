@@ -4,15 +4,20 @@ Showcase site for Bespoke Betty (handmade, made-to-order shirts, hoodies, jumper
 Inherits the freelance grouping conventions (`../CLAUDE.md`); this file is authoritative for
 project-specifics.
 
-## Ownership (deliberate deviation)
+## Ownership (deliberate split)
 
-The freelance handoff rule says the **client** owns GitHub + Netlify from day one. This project
-**intentionally departs**: it's the owner's sister's site, maintained indefinitely by us.
+It's the owner's sister's site, maintained indefinitely by the owner. Ownership is split on
+purpose — **code with the owner, infrastructure with Betty** — and the two share credentials:
 
-- **GitHub**: private repo under **npburgess** (owner's personal account), remote via the
-  `github-npburgess` SSH alias — `git@github-npburgess:npburgess/bespoke-betty.git`.
-- **Netlify**: owner's account.
-- Trade-off accepted: taking it fully independent later means an account transfer.
+- **GitHub repo**: under **npburgess** (owner) — `git@github-npburgess:npburgess/bespoke-betty.git`.
+  Betty's dedicated **`bespokebetty`** GitHub account is a **collaborator** (write) so she can edit
+  via the CMS; she doesn't code.
+- **Netlify + Cloudflare**: under the **`bespokebetty`** account (Betty owns hosting/infra).
+- **Cross-account note:** because Netlify (Betty) connects to a repo owned by npburgess, the
+  **Netlify GitHub App must be approved on the npburgess repo** — npburgess does that one-time via
+  shared access. Same idea for any GitHub App touching the repo.
+- The CMS OAuth app / Sveltia auth worker live under Betty's accounts (infra), secrets in her
+  Cloudflare worker.
 
 ## Stack & shape
 
