@@ -12,12 +12,13 @@ purpose — **code with the owner, infrastructure with Betty** — and the two s
 - **GitHub repo**: under **npburgess** (owner) — `git@github-npburgess:npburgess/bespoke-betty.git`.
   Betty's dedicated **`bespokebetty`** GitHub account is a **collaborator** (write) so she can edit
   via the CMS; she doesn't code.
-- **Netlify + Cloudflare**: under the **`bespokebetty`** account (Betty owns hosting/infra).
-- **Cross-account note:** because Netlify (Betty) connects to a repo owned by npburgess, the
-  **Netlify GitHub App must be approved on the npburgess repo** — npburgess does that one-time via
-  shared access. Same idea for any GitHub App touching the repo.
-- The CMS OAuth app / Sveltia auth worker live under Betty's accounts (infra), secrets in her
-  Cloudflare worker.
+- **Netlify**: under **npburgess** — site `bespoke-betty.netlify.app`. (Originally tried under
+  Betty, but a Betty-Netlify → npburgess-repo connection needs a cross-personal-account GitHub App
+  approval that Netlify's UI wouldn't surface cleanly, so Netlify was moved to npburgess to match
+  the repo. New Netlify sites are **private by default** — had to set Visitor access → Public.)
+- **Cloudflare** (Sveltia auth worker `sveltia-cms-auth.miriam-116.workers.dev`) + the **CMS OAuth
+  app** + **domain/DNS** (Netregistry): under **Betty**'s accounts. These are independent of who
+  owns Netlify; `ALLOWED_DOMAINS` covers `*.netlify.app` so CMS login works regardless.
 
 ## Stack & shape
 
