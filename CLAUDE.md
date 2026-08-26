@@ -35,9 +35,9 @@ The freelance handoff rule says the **client** owns GitHub + Netlify from day on
   web records (apex/www → Netlify); leave all mail records alone. See `docs/dns-and-email.md`.
 - Domain email: **already live on Proton Mail** (e.g. `miriam@bespokebetty.com.au`), admin at
   account.proton.me — NOT Webcentral hosting. So the domain **sends real mail**: don't hard-lock
-  anti-spoofing. MX/DKIM/DMARC are set; the one gap is a **missing SPF** — add
-  `v=spf1 include:_spf.protonmail.ch ~all` at the apex (details in the doc). No Cloudflare move
-  needed for email — Proton already handles it.
+  anti-spoofing. MX/DKIM/DMARC are set; SPF exists **only as a deprecated SPF-type record** (which
+  receivers ignore) — republish it as a **TXT** record: `v=spf1 include:_spf.protonmail.ch ~all`
+  at the apex (details in the doc). No Cloudflare move needed for email — Proton already handles it.
 
 ## Deploy
 

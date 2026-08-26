@@ -25,19 +25,23 @@ Verified from public DNS on 2026-08-26.
 | CNAME | `protonmail3._domainkey` | `protonmail3.domainkey.dg4ezpkykb…proton.ch` | DKIM |
 | TXT | `_dmarc` | `v=DMARC1; p=quarantine` | DMARC policy |
 
-## Fix to apply now: add the missing SPF record
+## Fix to apply now: publish SPF as a TXT record
 
-The domain has **no `v=spf1` record**, which Proton requires — without it, mail Miriam sends can
-fail SPF and be treated as spam. Add exactly one TXT record at Netregistry:
+The SPF value **exists**, but only as a legacy **`SPF`-type DNS record** (Host
+`bespokebetty.com.au`, value `v=spf1 include:_spf.protonmail.ch ~all`). The standalone SPF record
+type was deprecated by RFC 7208 — modern mail servers read SPF **only from TXT records** and
+ignore the SPF-type one. So `dig +short TXT bespokebetty.com.au` shows no SPF, and receivers
+effectively see none. Fix by adding the same value as a **TXT** record:
 
 | Type | Name / Host | Value |
 |---|---|---|
-| TXT | `@` (the apex / root) | `v=spf1 include:_spf.protonmail.ch ~all` |
+| TXT | `@` (apex; or `bespokebetty.com.au` to match other apex rows) | `v=spf1 include:_spf.protonmail.ch ~all` |
 
 Notes:
-- This is additive and isolated — it doesn't affect the website, MX, or DKIM.
-- Keep the existing `protonmail-verification=…` TXT as a **separate** record; don't merge or
-  replace it. A domain may have multiple TXT records; it must have only **one** `v=spf1` record.
+- Additive and isolated — doesn't affect the website, MX, or DKIM.
+- Keep the `protonmail-verification=…` TXT as a **separate** record. A domain may have many TXT
+  records but must have only **one** starting `v=spf1`.
+- The old **`SPF`-type** row can be deleted (deprecated/ignored) or left as-is; harmless either way.
 - Verify after ~15–60 min: `dig +short TXT bespokebetty.com.au` should now list the SPF line too.
 
 ## Later (optional): tighten DMARC
