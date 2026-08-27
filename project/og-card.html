@@ -1,68 +1,75 @@
 <!--
-  OG share-card generator (1200×630). Per-client starting point.
-
-  Rasterize to PNG with headless Chrome, then drop into the site:
-    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
-      --headless=new --disable-gpu --hide-scrollbars --force-device-scale-factor=1 \
-      --screenshot=og-card.png --window-size=1200,630 \
-      file://$PWD/og-card.html
-    cp og-card.png ../public/images/og-card.png
-
-  Content rules (learned the hard way — see freelance/CLAUDE.md Build conventions):
-    - Use the REAL brand logo/crest, not a placeholder mark.
-    - Heading ≈ 3 words so it survives a phone-sized thumbnail; drop any subheading.
-    - Restrain the accent — one CTA, not a wash of colour. A white pill on a dark card reads
-      as the distinct call-to-action while the accent stays on the crest/keywords.
-    - CTA = imperative verb + button affordance (arrow). "Play at example.com →", not a bare domain.
+  Bespoke Betty — OG share card source (Thread design).
+  Rasterize to public/images/og-card.png at 1200×630:
+    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new \
+      --hide-scrollbars --force-device-scale-factor=1 --window-size=1200,630 \
+      --virtual-time-budget=3000 --screenshot=public/images/og-card.png \
+      file://$PWD/project/og-card.html
+  Fonts: Fraunces (display) + Inter (labels) via Google Fonts CDN — needs network at rasterize time.
+  Palette mirrors src/styles/global.css tokens (bg #EDE8E0, text #33302B, accent clay #B08968).
 -->
 <!doctype html>
+<html lang="en">
+<head>
 <meta charset="utf-8" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  * { margin: 0; box-sizing: border-box; }
-  html, body { height: 630px; width: 1200px; }
-  body {
-    align-items: center;
-    background: radial-gradient(120% 120% at 78% 20%, #1f2b22 0%, #0f1410 60%);
-    color: #f4f7f0;
-    display: flex;
-    font-family: "Inter", system-ui, -apple-system, sans-serif;
-    gap: 72px;
-    padding: 72px 96px;
+  :root{
+    --bg:#EDE8E0; --surface:#F7F4EF; --text:#33302B; --muted:#8B857B;
+    --line:#CFC4B2; --accent:#B08968;
+    --serif:"Fraunces",Georgia,serif; --sans:"Inter",system-ui,sans-serif;
   }
-  .logo { flex: 0 0 340px; height: 340px; }
-  .logo svg, .logo img { display: block; height: 340px; width: 340px; }
-  .copy { flex: 1; }
-  .eyebrow {
-    color: #f5a623; /* accent */
-    font-size: 28px;
-    font-weight: 600;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{width:1200px;height:630px;}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);}
+  .card{
+    width:1200px;height:630px;padding:56px;
+    display:flex;
   }
-  h1 {
-    font-size: 128px;
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    line-height: 0.92;
-    margin: 26px 0 40px;
+  /* dashed "stitch" frame — the brand signature */
+  .frame{
+    flex:1;border:2px dashed var(--line);border-radius:22px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;padding:48px 64px;position:relative;
   }
-  h1 span { color: #f5a623; } /* accent on the payoff word only */
-  .cta {
-    align-items: center;
-    background: #f4f7f0; /* white pill = the one clear call-to-action */
-    border-radius: 999px;
-    color: #0f1410;
-    display: inline-flex;
-    font-size: 34px;
-    font-weight: 700;
-    padding: 18px 40px;
+  .eyebrow{
+    color:var(--accent);font-weight:600;font-size:22px;
+    letter-spacing:.22em;text-transform:uppercase;
+  }
+  .wordmark{
+    font-family:var(--serif);font-weight:400;font-size:132px;line-height:1;
+    margin:26px 0 0;letter-spacing:-.01em;
+  }
+  .wordmark em{font-style:italic;color:var(--accent);}
+  .divider{
+    width:120px;border:0;border-top:2px dashed var(--line);margin:30px 0;
+  }
+  .tagline{
+    color:var(--muted);font-size:30px;line-height:1.4;max-width:30ch;text-wrap:balance;
+  }
+  .cta{
+    margin-top:38px;background:var(--accent);color:#fff;border-radius:999px;
+    font-weight:500;font-size:26px;padding:16px 40px;display:inline-flex;gap:12px;align-items:center;
+  }
+  /* domain, bottom-right of the frame */
+  .domain{
+    position:absolute;right:40px;bottom:34px;
+    color:var(--muted);font-size:20px;letter-spacing:.02em;
   }
 </style>
-<div class="logo">
-  <!-- Paste the client's real logo SVG here (or <img src="..."> a PNG). -->
-</div>
-<div class="copy">
-  <div class="eyebrow">City, Region</div>
-  <h1>Three-word<br /><span>hook.</span></h1>
-  <span class="cta">Do X at example.com&nbsp;&rarr;</span>
-</div>
+</head>
+<body>
+  <div class="card">
+    <div class="frame">
+      <div class="eyebrow">Handmade · Made to order</div>
+      <h1 class="wordmark">Bespoke <em>Betty</em></h1>
+      <hr class="divider">
+      <p class="tagline">Custom shirts, hoodies &amp; cushions — made just for you.</p>
+      <div class="cta">See the work&nbsp;→</div>
+      <div class="domain">bespokebetty.com.au</div>
+    </div>
+  </div>
+</body>
+</html>
