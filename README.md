@@ -64,10 +64,12 @@ Forms → `contact` → add an email notification to Betty's address.
 - Repo: GitHub (npburgess), **public** (required so Betty's CMS commits + dev commits are both
   allowed to deploy — Netlify's free plan caps private repos at one Git contributor). No secrets
   are committed; all live in Netlify/Cloudflare env.
-- Host: Netlify — connect the repo; build config comes from `netlify.toml`.
-- Domain: `bespokebetty.com.au` (currently at Netregistry). Point DNS at Netlify; add
-  email anti-spoofing DNS (read existing records first). Web-only for now — no domain email
-  decided yet.
+- Host: Netlify (npburgess) — site `bespoke-betty.netlify.app`, auto-deploys from `main`
+  (`netlify.toml`). New Netlify sites are private by default → Visitor access set to Public.
+- Domain: **live at `https://bespokebetty.com.au`** — DNS at Webcentral/Netregistry, apex A →
+  `75.2.60.5`, `www` CNAME → `bespoke-betty.netlify.app` (redirects to apex), Let's Encrypt TLS
+  auto-issued. Email is Proton (`miriam@`); its records were left untouched. See
+  `docs/dns-and-email.md`.
 
 ## Documentation
 
