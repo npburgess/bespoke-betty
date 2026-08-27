@@ -16,10 +16,11 @@ purpose — **code with the owner, infrastructure with Betty** — and the two s
   npburgess) are two, so a private repo blocks every CMS-driven deploy. No secrets are committed.
   (After flipping visibility on GitHub, Netlify cached the old "private" flag — a fresh **push**
   refreshed it; a Trigger-deploy alone did not.)
-- **Netlify**: under **npburgess** — site `bespoke-betty.netlify.app`. (Originally tried under
-  Betty, but a Betty-Netlify → npburgess-repo connection needs a cross-personal-account GitHub App
-  approval that Netlify's UI wouldn't surface cleanly, so Netlify was moved to npburgess to match
-  the repo. New Netlify sites are **private by default** — had to set Visitor access → Public.)
+- **Netlify**: under **`bespokebetty`** (Miriam's team, signed in via GitHub `bespokebetty`) —
+  site `bespoke-betty.netlify.app`, custom domain `bespokebetty.com.au`. Connects to the
+  npburgess-owned repo via the Netlify GitHub App (approved on the npburgess repo). Making the repo
+  public removed the contributor limit. New Netlify sites are **private by default** — set Visitor
+  access → Public.
 - **Cloudflare** (Sveltia auth worker `sveltia-cms-auth.miriam-116.workers.dev`) + the **CMS OAuth
   app** + **domain/DNS** (Netregistry): under **Betty**'s accounts. These are independent of who
   owns Netlify; `ALLOWED_DOMAINS` covers `*.netlify.app` so CMS login works regardless.
