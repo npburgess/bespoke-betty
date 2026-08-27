@@ -1,0 +1,60 @@
+---
+import BaseLayout from "../layouts/base-layout.astro";
+---
+
+<BaseLayout title="Bespoke Betty — Page not found" description="That page couldn't be found.">
+  <meta name="robots" content="noindex" slot="head" />
+  <section class="notfound">
+    <div class="container">
+      <p class="eyebrow">404 · Page not found</p>
+      <h1>Lost the thread.</h1>
+      <p class="lead">
+        That page isn't here — it may have moved, or never existed. Let's get you back to the
+        good stuff.
+      </p>
+      <div class="actions">
+        <a class="button" href="/#work">See the work</a>
+        <a class="link" href="/">Back home</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .notfound {
+    padding: clamp(4rem, 12vw, 8rem) 0;
+    text-align: center;
+  }
+
+  .notfound h1 {
+    font-size: clamp(3rem, 9vw, 5rem);
+    margin: 1.2rem 0 0;
+  }
+
+  .lead {
+    color: var(--color-muted);
+    font-size: 1.14rem;
+    margin: 1.4rem auto 0;
+    max-width: 42ch;
+  }
+
+  .actions {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.4rem;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+
+  .link {
+    border-bottom: 1px solid var(--color-line);
+    color: var(--color-muted);
+    padding-bottom: 2px;
+  }
+
+  .link:hover {
+    border-color: var(--color-accent);
+    color: var(--color-text);
+  }
+</style>
