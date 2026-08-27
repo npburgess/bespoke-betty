@@ -21,3 +21,6 @@ project/data/
 
 # Per-user Claude config
 .claude/settings.local.json
+
+# Private handoff notes (manual handoff only — never commit)
+Bespoke Betty Notes.md
