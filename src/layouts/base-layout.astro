@@ -31,6 +31,11 @@ const {
 // Canonical + absolute URLs derive from `site` in astro.config.mjs.
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogImageUrl = new URL(ogImage, Astro.site).href;
+
+// Cloudflare Web Analytics (cookieless, no consent banner). Only renders when the token env var
+// is set — so it stays out of local dev. Set PUBLIC_CF_BEACON_TOKEN in Netlify (all scopes, not
+// secret — it's a public value baked into the HTML).
+const cfBeaconToken = import.meta.env.PUBLIC_CF_BEACON_TOKEN;
 ---
 
 <!doctype html>
@@ -70,6 +75,16 @@ const ogImageUrl = new URL(ogImage, Astro.site).href;
       local/map results with no analytics account required.
     -->
     <slot name="head" />
+
+    {
+      cfBeaconToken && (
+        <script
+          defer
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon={JSON.stringify({ token: cfBeaconToken })}
+        />
+      )
+    }
   </head>
   <body>
     <SiteNav />
