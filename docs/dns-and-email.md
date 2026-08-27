@@ -60,17 +60,28 @@ outbound mail passes SPF+DKIM alignment (send to a Gmail account, check "show or
 
 ## Website launch — DNS change plan (Netlify)
 
-When the site goes live, change **only** the website records at Netregistry and leave every mail
-record above untouched:
+Netlify site: **`bespoke-betty.netlify.app`** (npburgess). Domain is added in Netlify (**Domain
+management → Add a domain**) and points there via external DNS at Webcentral. Change **only** the
+two web records and leave every mail record above untouched.
 
-1. **Apex `@`** — repoint from the Netregistry parking IP to Netlify. Prefer Netlify's
-   `ALIAS`/`ANI`-style apex option; if Netregistry only supports plain A records at the apex, use
-   Netlify's load-balancer IP (`75.2.60.5`) as they document.
-2. **`www`** — `CNAME` to the Netlify site (`<site>.netlify.app`), or set it as the primary and
-   redirect apex → www (Netlify handles the redirect + TLS).
-3. Leave MX, `protonmail-verification` TXT, the three `_domainkey` CNAMEs, DMARC, and the new SPF
-   **exactly as-is**.
-4. If DNS is ever moved to Cloudflare, keep the Netlify web records **DNS-only (grey cloud)** and
-   re-create all the Proton mail records first, verifying mail still flows before switching NS.
+**Change these at Webcentral:**
 
-TLS is issued by Netlify automatically once the records resolve.
+| Type | Host | Old (Netregistry parking) | New (Netlify) |
+|---|---|---|---|
+| A | `@` (root) | `202.124.241.178` | **`75.2.60.5`** (Netlify load balancer) |
+| A → CNAME | `www` | A `202.124.241.178` | **CNAME → `bespoke-betty.netlify.app`** (delete the www A, add a CNAME) |
+
+**Leave exactly as-is:** MX (Proton), `protonmail-verification` TXT, SPF TXT (`v=spf1 …`), the
+three `_domainkey` CNAMEs, DMARC. None of them touch the website.
+
+**In Netlify:** Domain management → Add `bespokebetty.com.au` (and `www`), set the apex as the
+**primary** domain (www redirects to it). Netlify auto-issues a Let's Encrypt TLS cert once the A
+record resolves — no action needed beyond waiting for DNS propagation (Webcentral TTL is 3600s, so
+up to ~1h).
+
+**Verify after propagation:** `dig +short A bespokebetty.com.au` → `75.2.60.5`;
+`dig +short CNAME www.bespokebetty.com.au` → `bespoke-betty.netlify.app`; `dig +short MX
+bespokebetty.com.au` still shows Proton.
+
+If DNS is ever moved to Cloudflare later, keep the Netlify web records **DNS-only (grey cloud)** and
+re-create all the Proton mail records first, verifying mail still flows before switching NS.
