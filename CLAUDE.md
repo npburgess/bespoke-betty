@@ -9,9 +9,13 @@ project-specifics.
 It's the owner's sister's site, maintained indefinitely by the owner. Ownership is split on
 purpose — **code with the owner, infrastructure with Betty** — and the two share credentials:
 
-- **GitHub repo**: under **npburgess** (owner) — `git@github-npburgess:npburgess/bespoke-betty.git`.
-  Betty's dedicated **`bespokebetty`** GitHub account is a **collaborator** (write) so she can edit
-  via the CMS; she doesn't code.
+- **GitHub repo**: under **npburgess** (owner) — `git@github-npburgess:npburgess/bespoke-betty.git`,
+  **public**. Betty's dedicated **`bespokebetty`** GitHub account is a **collaborator** (write) so
+  she can edit via the CMS; she doesn't code. Repo is public because Netlify's free plan caps
+  **private** repos at one Git contributor — and CMS commits (as `bespokebetty`) + dev commits (as
+  npburgess) are two, so a private repo blocks every CMS-driven deploy. No secrets are committed.
+  (After flipping visibility on GitHub, Netlify cached the old "private" flag — a fresh **push**
+  refreshed it; a Trigger-deploy alone did not.)
 - **Netlify**: under **npburgess** — site `bespoke-betty.netlify.app`. (Originally tried under
   Betty, but a Betty-Netlify → npburgess-repo connection needs a cross-personal-account GitHub App
   approval that Netlify's UI wouldn't surface cleanly, so Netlify was moved to npburgess to match
