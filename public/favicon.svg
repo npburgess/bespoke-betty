@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Bespoke Betty">
+  <!-- Thread palette: clay tile (#B08968) + cream serif B (#F7F4EF). Rebrand = edit these two hexes. -->
+  <rect width="32" height="32" rx="7" fill="#B08968"/>
+  <text x="16" y="17" font-family="Georgia, 'Times New Roman', serif" font-size="22" font-weight="500"
+    fill="#F7F4EF" text-anchor="middle" dominant-baseline="central">B</text>
+</svg>
