@@ -11,3 +11,12 @@
 #
 # CMS: Sveltia at /admin commits to GitHub → this connected build redeploys the site.
 # Login needs the auth worker in public/admin/config.yml (base_url). See docs/editing.md.
+
+# Canonicalize: 301 the raw Netlify subdomain to the custom domain (avoids duplicate content).
+# Host-specific `from` so it only fires on bespoke-betty.netlify.app — the custom domain and
+# deploy-preview subdomains are unaffected. :splat preserves the path.
+[[redirects]]
+  from = "https://bespoke-betty.netlify.app/*"
+  to = "https://bespokebetty.com.au/:splat"
+  status = 301
+  force = true
