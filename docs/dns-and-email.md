@@ -44,17 +44,11 @@ Notes:
 - The old **`SPF`-type** row can be deleted (deprecated/ignored) or left as-is; harmless either way.
 - Verify after ~15–60 min: `dig +short TXT bespokebetty.com.au` should now list the SPF line too.
 
-## Later (optional): tighten DMARC
+## DMARC: staying at `p=quarantine` (decided)
 
-Once SPF is live and confirmed for a week or two with no delivery issues, DMARC can move from
-`quarantine` to `reject` for stronger anti-spoofing:
-
-| Type | Name | Value |
-|---|---|---|
-| TXT | `_dmarc` | `v=DMARC1; p=reject` |
-
-Not urgent; `p=quarantine` is already a reasonable policy. Only tighten after confirming Miriam's
-outbound mail passes SPF+DKIM alignment (send to a Gmail account, check "show original").
+**Decision (2026-08-27): leave DMARC at `v=DMARC1; p=quarantine`.** We are *not* tightening to
+`p=reject`. `quarantine` is already a reasonable anti-spoofing policy, and this keeps things simple.
+No action needed here.
 
 ---
 
